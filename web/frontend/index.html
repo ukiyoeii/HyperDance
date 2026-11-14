@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HYPER · Breaking 动作分析</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<aside class="sidebar">
+  <a class="brand" href="/" aria-label="Hyper 首页"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 5v22m18-22v22M7 16h18"/></svg><span>HYPER<span class="brand-dot">.</span></span></a>
+  <div class="workspace-label">DANCE LAB / 本地工作台</div>
+  <button class="nav active" id="newVideo"><span>◈</span> 视频分析 <span class="nav-plus">＋</span></button>
+  <div class="history-heading">最近分析 <span id="historyCount">0</span></div>
+  <div id="history" class="history"><p class="empty-history">第一段舞蹈，从这里开始。</p></div>
+  <div class="sidebar-bottom"><span class="local-dot"></span> 视频留在本机<p>支持 Breaking 三类动作<br>首次建议使用清晰的单人片段</p></div>
+</aside>
+<main>
+  <header><div class="breadcrumb">工作台 <span>/</span> 视频分析</div><div class="runtime"><i></i><span id="healthText">正在连接本地服务</span></div></header>
+  <section class="intro"><div><div class="eyebrow">MOVEMENT, DECODED.</div><h1>Breaking 动作分析</h1><p>上传舞蹈视频，跟随播放查看每一段动作。</p></div><div class="mode-chip"><span>BREAKING</span><b>3 类动作</b></div></section>
+  <section class="content-grid">
+    <div class="main-column">
+      <div class="video-card">
+        <div class="card-heading"><span><i class="small-square"></i> 视频工作区</span><span class="subtle" id="videoName">等待上传</span></div>
+        <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="选择或拖入舞蹈视频">
+          <div class="drop-art"><svg viewBox="0 0 96 96" aria-hidden="true"><rect x="14" y="17" width="68" height="62" rx="13"/><path d="M48 58V36m-9 9 9-9 9 9M31 66h34"/></svg></div>
+          <h2>把舞蹈带进来</h2><p>拖入视频，或点击选择文件</p><span class="choose-label">选择视频 <span>↗</span></span><small>MP4 / MOV / WebM 等 · 最长 5 分钟 · 最大 300 MB</small>
+        </div>
+        <div class="video-stage hidden" id="stage"><video id="video" controls playsinline preload="metadata"></video><canvas id="overlay"></canvas><div class="stage-badge" id="stageBadge">视频已就绪</div></div>
+        <input id="fileInput" type="file" accept="video/*,.mkv,.m4v" hidden>
+        <div class="video-toolbar"><button class="text-button" id="replace" disabled>↥ 更换视频</button><div><label class="toggle"><input id="showSkeleton" type="checkbox" checked><span>显示骨架</span></label><button class="text-button" id="target" disabled>◎ 选择舞者</button></div></div>
+      </div>
+      <div class="progress-panel hidden" id="progressPanel" aria-live="polite"><div><span id="progressMessage">正在上传…</span><b id="progressPercent">0%</b></div><progress id="progress" max="1" value="0"></progress><small id="progressDetail">视频只会发送到这台电脑上的服务。</small></div>
+      <div class="timeline-card"><div class="card-heading"><span>动作时间线</span><span class="subtle" id="timeDisplay">00:00 / 00:00</span></div><div id="timeline" class="timeline"><span class="timeline-placeholder">分析完成后，在这里查看动作分布</span></div><div class="timeline-legend"><span><i class="toprock"></i>Toprock</span><span><i class="footwork"></i>Footwork</span><span><i class="powermove"></i>Powermove</span><span><i class="unknown"></i>待确认 / 骨架不足</span></div></div>
+      <div class="notice" id="notice">建议上传 5–20 秒的单人 Breaking 片段。多人画面可先选择舞者；默认从第一帧的最大人物开始追踪。</div>
+    </div>
+    <aside class="results-column">
+      <div class="result-card"><div class="card-heading"><span>当前动作</span><span class="live-tag" id="resultTag">等待分析</span></div><div class="action-label" id="actionLabel">—</div><p id="actionDescription" class="action-description">播放已分析的视频，动作会随时间更新。</p><div class="score-heading"><span>模型分数</span><span id="scoreText">—</span></div><div class="score-bars" id="scoreBars"><div data-class="0"><span><i class="toprock"></i>Toprock</span><b>—</b><div><i></i></div></div><div data-class="1"><span><i class="footwork"></i>Footwork</span><b>—</b><div><i></i></div></div><div data-class="2"><span><i class="powermove"></i>Powermove</span><b>—</b><div><i></i></div></div></div><p class="score-note">分数反映模型偏好，不等于识别正确率。</p></div>
+      <div class="settings-card"><label class="setting"><span>平滑动作结果<small>汇总最近 3 个窗口，减少短暂跳变</small></span><input id="smooth" type="checkbox" checked></label><div class="setting-info"><span>分析范围</span><b>Toprock / Footwork / Powermove</b></div><div class="setting-info"><span>运行位置</span><b>本机 · CPU</b></div></div>
+      <button id="start" class="primary" disabled><span id="startLabel">开始分析</span><span>↗</span></button><button id="cancel" class="secondary hidden">取消分析</button><a id="export" class="export hidden" download>↓ 导出动作结果 JSON</a>
+      <div class="summary-card hidden" id="summaryCard"><div class="card-heading"><span>本次分析</span><span>✓</span></div><div><span>处理耗时</span><b id="processingTime">—</b></div><div><span>处理速度</span><b id="processingSpeed">—</b></div><p id="qualityNote"></p></div>
+      <p class="scope-note">当前仅分析 Breaking 三类动作。Freeze、过渡动作及其他舞种可能被误判；结果用于实验与辅助查看。</p>
+    </aside>
+  </section>
+  <footer><span>HYPER DANCE LAB</span><span>上传后在本机处理 · 随播放同步显示</span></footer>
+</main><div id="toast" role="alert" class="toast hidden"></div>
+<script src="/app.js"></script>
+</body></html>

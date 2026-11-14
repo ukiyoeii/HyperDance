@@ -1,0 +1,28 @@
+{
+  "version": "stgcn_v1",
+  "seed": 42,
+  "target_fps": 30,
+  "confidence_threshold": 0.2,
+  "max_gap_seconds": 0.2,
+  "quality": {
+    "min_observed": 0.7,
+    "min_supported": 0.8,
+    "min_frame_fraction": 0.9,
+    "max_imputed": 0.2
+  },
+  "aist": {
+    "protocol": "one_dancer_per_genre_per_split",
+    "fold": 0,
+    "train_views": ["c01", "c04", "c07"],
+    "eval_views": ["c01"],
+    "window_seconds": 4,
+    "train_stride_seconds": 2,
+    "eval_stride_seconds": 4
+  },
+  "brace": {
+    "protocol": "whole_video_grouped_70_15_15",
+    "window_seconds": 2,
+    "train_stride_seconds": 1,
+    "eval_stride_seconds": 2
+  }
+}

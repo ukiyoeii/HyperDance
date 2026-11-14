@@ -1,0 +1,139 @@
+{
+  "genres": [
+    {
+      "id": 0,
+      "code": "gBR",
+      "name": "Breaking"
+    },
+    {
+      "id": 1,
+      "code": "gPO",
+      "name": "Popping"
+    },
+    {
+      "id": 2,
+      "code": "gLO",
+      "name": "Locking"
+    },
+    {
+      "id": 3,
+      "code": "gWA",
+      "name": "Waacking"
+    },
+    {
+      "id": 4,
+      "code": "gMH",
+      "name": "Middle Hip-hop"
+    },
+    {
+      "id": 5,
+      "code": "gLH",
+      "name": "LA-style Hip-hop"
+    },
+    {
+      "id": 6,
+      "code": "gHO",
+      "name": "House"
+    },
+    {
+      "id": 7,
+      "code": "gKR",
+      "name": "Krump"
+    },
+    {
+      "id": 8,
+      "code": "gJS",
+      "name": "Street Jazz"
+    },
+    {
+      "id": 9,
+      "code": "gJB",
+      "name": "Ballet Jazz"
+    }
+  ],
+  "actions": {
+    "toprock": 0,
+    "footwork": 1,
+    "powermove": 2
+  },
+  "brace_official_actions": {
+    "toprock": 0,
+    "powermove": 1,
+    "footwork": 2
+  },
+  "skeleton": "COCO-17",
+  "edges": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      5,
+      6
+    ],
+    [
+      5,
+      7
+    ],
+    [
+      7,
+      9
+    ],
+    [
+      6,
+      8
+    ],
+    [
+      8,
+      10
+    ],
+    [
+      5,
+      11
+    ],
+    [
+      6,
+      12
+    ],
+    [
+      11,
+      12
+    ],
+    [
+      11,
+      13
+    ],
+    [
+      13,
+      15
+    ],
+    [
+      12,
+      14
+    ],
+    [
+      14,
+      16
+    ],
+    [
+      0,
+      5
+    ],
+    [
+      0,
+      6
+    ]
+  ]
+}

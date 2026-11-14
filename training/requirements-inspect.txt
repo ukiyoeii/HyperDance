@@ -1,0 +1,2 @@
+# Only for dataset inspection; GPU training dependencies will be pinned separately.
+numpy==1.23.5
