@@ -1,0 +1,37 @@
+# Large original and generated datasets
+data/downloads/
+data/raw/
+data/processed/
+data/samples/
+outputs/
+models/
+env/
+.cache/
+exports/
+.publish/
+
+# Internal machine-specific notes and private upload destination
+tools/upload_to_server.ps1
+docs/data_inventory.md
+docs/data_check.md
+docs/training_data.md
+docs/remote_trial_report.md
+docs/local_website.md
+docs/formal_v1_review_notes.md
+docs/breaking_next_stage.md
+docs/remote_changes/
+data/splits/stgcn_v1/
+
+# Environments, Python and frontend caches
+.venv*/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+
+logs/
+third_party/
